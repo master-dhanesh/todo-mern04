@@ -66,4 +66,17 @@ router.get("/edit/:id", function (req, res, next) {
     res.render("edit", { task: filteredData[0] });
 });
 
+router.post("/edit/:id", function (req, res, next) {
+    const id = req.params.id;
+    const { title, desc } = req.body;
+    const taskindex = LOCAL_DB.findIndex(function (task) {
+        return task.id === id;
+    });
+    const activetask = { ...LOCAL_DB[taskindex], title, desc };
+
+    LOCAL_DB[taskindex] = activetask;
+
+    res.redirect("/");
+});
+
 module.exports = router;
