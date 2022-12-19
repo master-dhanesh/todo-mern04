@@ -17,12 +17,15 @@
         <div class="ms-2 me-auto">
             <div class="fw-bold fs-4"><%= task.title %></div>
             <%= task.desc.substr(0,20) %>... |
-            <small class="text-danger"><%= task.deadline %></small>
+            <small class="text-danger"
+                ><%= task.date.toLocaleDateString("en-US", { day: "numeric",
+                month: "long", year: "numeric", }) %></small
+            >
         </div>
-        <a href="/edit/<%= task.id%>">
+        <a href="/edit/<%= task._id%>">
             <span class="fs-4 badge rounded-pill">✏️</span>
         </a>
-        <a href="/delete/<%= task.id%>">
+        <a href="/delete/<%= task._id%>">
             <span class="fs-4 badge rounded-pill">❌</span>
         </a>
     </li>
